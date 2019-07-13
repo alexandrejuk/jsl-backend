@@ -15,6 +15,12 @@ const TicketEvent = (sequelize) => {
       type: Sequelize.DATE,
       allowNull: false,
     }
+  },
+  {
+    indexes: [{
+      unique: true,
+      fields: ['ticketId', 'status']
+    }]
   })
 
   TicketEvent.associate = (models) => {

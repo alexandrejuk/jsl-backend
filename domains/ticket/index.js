@@ -5,6 +5,7 @@ const VehicleModel = database.model('vehicle')
 const OperationModel = database.model('operation')
 const TicketModel = database.model('ticket')
 const TicketEventModel = database.model('ticketEvent')
+const DocaModel = database.model('doca')
 
 const include = [
   DriverModel,
@@ -62,6 +63,48 @@ class TicketDomain {
   async get(companyId) {
     const where = { companyId }
     return await TicketModel.findAll({ where, include })
+  }
+
+  changeStatus(value) {
+    const statusType = {
+      waiting_service: 'start_service',
+      start_service: 'ended_service',
+      ended_service: 'completed'
+    }
+    return statusType[value]
+  }
+
+  async update({ docaId, barCode }, companyId, transaction = null) {
+    let status = null
+    const statusDoca = {
+      start_service: 'operation',
+      ended_service: 'available'
+    }
+    const startedAt = new Date()
+    const where = { barCode, companyId }
+  
+    const findTicket = await TicketModel.findOne({ where })
+    const findDoca = await DocaModel.findByPk(docaId)
+
+    if(findTicket && findDoca && findTicket.status !== 'completed') {
+      status = this.changeStatus(findTicket.status)
+
+      await findTicket.update({ docaId, status }, { transaction })
+      await findTicket.reload({ transaction, include })
+      
+      await TicketEventModel.create({
+        status,
+        ticketId: findTicket.id,
+        startedAt,
+      }, { transaction })
+
+      if(status === 'start_service' || status === 'ended_service') {
+        await findDoca.update({ status: statusDoca[status] })
+      }
+
+    }
+
+    return findTicket
   }
 }
 

@@ -40,8 +40,27 @@ const getById = async (req, res, next) => {
   }
 }
 
+const update = async (req, res, next) => {
+  const transaction = await database.transaction()
+  const { companyId } = req.params
+  try {
+    const response = await ticketDomain.update(
+      req.body,
+      companyId,
+      transaction
+    )
+
+    res.json(response)
+    await transaction.commit()
+  } catch (error) {
+    await transaction.rollback()
+    next(error)
+  }
+}
+
 module.exports = {
   create,
   get,
   getById,
+  update,
 }
