@@ -14,10 +14,12 @@ const Driver = (sequelize) => {
     documentId: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     },
     cpf: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     }
   })
 

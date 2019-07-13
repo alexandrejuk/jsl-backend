@@ -11,6 +11,12 @@ const Operation = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     }
+  },
+  {
+    indexes: [{
+      unique: true,
+      fields: ['companyId', 'description']
+    }]
   })
 
   Operation.associate = (models) => {

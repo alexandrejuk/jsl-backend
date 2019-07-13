@@ -18,6 +18,7 @@ const Vehicle = (sequelize) => {
     plate: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     }
   })
 

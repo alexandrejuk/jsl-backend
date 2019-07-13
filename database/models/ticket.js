@@ -10,6 +10,7 @@ const Ticket = (sequelize) => {
     barCode: {
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     },
     status: {
       type: Sequelize.ENUM(['waiting_service', 'start_service', 'ended_service', 'completed']),

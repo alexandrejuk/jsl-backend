@@ -19,6 +19,12 @@ const Doca = (sequelize) => {
       type: Sequelize.ENUM(['available', 'operation']),
       allowNull: false,
     }
+  },
+  {
+    indexes: [{
+      unique: true,
+      fields: ['companyId', 'docaNumber']
+    }]
   })
 
   Doca.associate = (models) => {

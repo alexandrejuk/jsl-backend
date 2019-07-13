@@ -44,6 +44,13 @@ class TicketDomain {
       startedAt,
     }, { transaction })
 
+    await ticketCreated.save()
+    
+    await ticketCreated.reload({
+      transaction,
+      include,
+    })
+
     return ticketCreated
   }
 
