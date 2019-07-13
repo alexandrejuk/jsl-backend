@@ -8,7 +8,7 @@ class OperationDomain {
 
   async getById(operationId, companyId) {
     const where = { companyId }
-    return await OperationModel.findByPk(operationId, where)
+    return await OperationModel.findByPk(operationId, { where })
   }
 
   async get(companyId) {

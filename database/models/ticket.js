@@ -42,6 +42,16 @@ const Ticket = (sequelize) => {
         allowNull: false,
       }
     })
+    models.ticket.belongsTo(models.doca, {
+      foreignKey: {
+        allowNull: true,
+      }
+    })
+    models.ticket.hasOne(models.ticketEvent, {
+      foreignKey: {
+        allowNull: true,
+      }
+    })
   }
   return Ticket
 }

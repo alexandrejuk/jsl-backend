@@ -8,7 +8,7 @@ class DocaDomain {
 
   async getById(id, companyId) {
     const where = { companyId }
-    return await DocaModel.findByPk(id, where)
+    return await DocaModel.findByPk(id, { where })
   }
 
   async get(companyId) {
