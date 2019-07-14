@@ -8,7 +8,7 @@ const TicketEvent = (sequelize) => {
       primaryKey: true,
     },
     status: {
-      type: Sequelize.ENUM(['waiting_service', 'start_service', 'ended_service', 'completed']),
+      type: Sequelize.ENUM(['waiting_service', 'start_service', 'ended_service', 'completed', 'cancel']),
       allowNull: false,
     },
     startedAt: {

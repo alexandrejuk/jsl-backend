@@ -33,6 +33,11 @@ const Doca = (sequelize) => {
         allowNull: false,
       }
     })
+    models.doca.hasMany(models.ticket, {
+      foreignKey: {
+        allowNull: true,
+      }
+    })
   }
 
   return Doca

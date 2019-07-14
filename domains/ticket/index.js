@@ -102,6 +102,16 @@ class TicketDomain {
         await findDoca.update({ status: statusDoca[status] })
       }
 
+      
+    }
+    
+    if(!docaId && findTicket && findTicket.status === 'waiting_service') {
+      await findTicket.update({ status: 'cancel' }, { transaction })
+      await TicketEventModel.create({
+        status: 'cancel',
+        ticketId: findTicket.id,
+        startedAt,
+      }, { transaction })
     }
 
     return findTicket

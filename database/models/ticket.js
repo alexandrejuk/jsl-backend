@@ -13,7 +13,7 @@ const Ticket = (sequelize) => {
       unique: true,
     },
     status: {
-      type: Sequelize.ENUM(['waiting_service', 'start_service', 'ended_service', 'completed']),
+      type: Sequelize.ENUM(['waiting_service', 'start_service', 'ended_service', 'completed', 'cancel']),
       allowNull: false,
     },
     service: {
@@ -48,7 +48,7 @@ const Ticket = (sequelize) => {
         allowNull: true,
       }
     })
-    models.ticket.hasOne(models.ticketEvent, {
+    models.ticket.hasMany(models.ticketEvent, {
       foreignKey: {
         allowNull: true,
       }
