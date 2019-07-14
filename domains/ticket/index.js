@@ -74,7 +74,7 @@ class TicketDomain {
     return statusType[value]
   }
 
-  async update({ docaId, barCode }, companyId, transaction = null) {
+  async update({ docaId = null, barCode }, companyId, transaction = null) {
     let status = null
     const statusDoca = {
       start_service: 'operation',
@@ -85,6 +85,17 @@ class TicketDomain {
   
     const findTicket = await TicketModel.findOne({ where })
     const findDoca = await DocaModel.findByPk(docaId)
+
+    if(!docaId && findTicket && findTicket.status === 'waiting_service') {
+      await findTicket.update({ status: 'cancel' }, { transaction })
+      await findTicket.reload({ transaction, include })
+      
+      await TicketEventModel.create({
+        status: 'cancel',
+        ticketId: findTicket.id,
+        startedAt,
+      }, { transaction })
+    }
 
     if(findTicket && findDoca && findTicket.status !== 'completed') {
       status = this.changeStatus(findTicket.status)
@@ -103,15 +114,6 @@ class TicketDomain {
       }
 
       
-    }
-    
-    if(!docaId && findTicket && findTicket.status === 'waiting_service') {
-      await findTicket.update({ status: 'cancel' }, { transaction })
-      await TicketEventModel.create({
-        status: 'cancel',
-        ticketId: findTicket.id,
-        startedAt,
-      }, { transaction })
     }
 
     return findTicket
