@@ -100,20 +100,36 @@ class TicketDomain {
     if(findTicket && findDoca && findTicket.status !== 'completed') {
       status = this.changeStatus(findTicket.status)
 
-      await findTicket.update({ docaId, status }, { transaction })
-      await findTicket.reload({ transaction, include })
-      
-      await TicketEventModel.create({
-        status,
-        ticketId: findTicket.id,
-        startedAt,
-      }, { transaction })
-
-      if(status === 'start_service' || status === 'ended_service') {
-        await findDoca.update({ status: statusDoca[status] })
+      if(findDoca.id === findTicket.docaId) {
+        await findTicket.update({ status }, { transaction })        
+        await findTicket.reload({ transaction, include })
+        const res = await TicketEventModel.create({
+          status,
+          ticketId: findTicket.id,
+          startedAt,
+        }, { transaction })
+  
+        if(status === 'start_service' || status === 'ended_service') {
+          await findDoca.update({ status: statusDoca[status] })
+        }
       }
 
+      if(!findTicket.docaId) {
+        await findTicket.update({ docaId, status }, { transaction })
+        await findTicket.reload({ transaction, include })
+        await TicketEventModel.create({
+          status,
+          ticketId: findTicket.id,
+          startedAt,
+        }, { transaction })
+  
+        if(status === 'start_service' || status === 'ended_service') {
+          await findDoca.update({ status: statusDoca[status] })
+        }
+      }
       
+
+
     }
 
     return findTicket
