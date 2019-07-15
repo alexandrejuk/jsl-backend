@@ -23,7 +23,7 @@ class UserDomain {
     const where = { companyId }
 
     const findUser = await UserModel.findByPk(id, { where })
-    await findUser({ email, userName })
+    await findUser.update({ email, userName })
     await findUser.reload()
 
     if(password) {

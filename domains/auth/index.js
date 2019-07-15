@@ -3,11 +3,11 @@ const database = require('../../database')
 const UserModel = database.model('user')
 
 class AuthDomain {
-  async login({ email, password }) {
-    const findUser = await UserModel.findOne({ where: { email }})
+  async login({ userName, password }) {
+    const findUser = await UserModel.findOne({ where: { userName }})
     
     if(!findUser) {
-      throw new Error('Email or password do not match')
+      throw new Error('Username or password do not match')
     }
     
     const checkedPassword = await compare(password, findUser.password)
@@ -16,7 +16,7 @@ class AuthDomain {
       return findUser
     }
 
-    throw new Error('Email or password do not match')
+    throw new Error('Username or password do not match')
   }
 }
 
