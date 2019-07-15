@@ -1,32 +1,36 @@
 const Sequelize = require('sequelize')
 
-const Company = (sequelize) => {
-  const Company = sequelize.define('company', {
+const User = (sequelize) => {
+  const User = sequelize.define('user', {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
     },
-    social_name: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    cnpj: {
+    email: {
       type: Sequelize.STRING,
       allowNull: false,
       unique: true,
-    }
+    },
+    password: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
   })
 
-  Company.associate = (models) => {
-    models.company.hasMany(models.user, {
+  User.associate = (models) => {
+    models.user.belongsTo(models.company, {
       foreignKey: {
         allowNull: false,
       }
     })
   }
 
-  return Company
+  return User
 }
 
-module.exports = Company
+module.exports = User

@@ -5,6 +5,7 @@ const Vehicle = require('./vehicle')
 const Ticket = require('./ticket')
 const Operation = require('./operation')
 const TicketEvent = require('./ticketEvent')
+const User = require('./user')
 
 module.exports = [
   Company,
@@ -14,4 +15,5 @@ module.exports = [
   Ticket,
   Operation,
   TicketEvent,
+  User,
 ]

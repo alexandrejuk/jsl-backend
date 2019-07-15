@@ -13,12 +13,14 @@ const { httpLogger } = escriba({
   service: 'api',
 })
 
+const authRoute = require('./routes/auth')
 const CompanyRoute = require('./routes/company')
 const OperationRoute = require('./routes/operation')
 const DocaRoute = require('./routes/doca')
 const DriverRoute = require('./routes/driver')
 const VehicleRoute = require('./routes/vehicle')
 const TicketRoute = require('./routes/ticket')
+const UserRoute = require('./routes/user')
 
 const app = Express()
 const baseUrl = '/api/v1'
@@ -28,6 +30,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(httpLogger)
 
+app.use(baseUrl, authRoute);
+app.use(baseUrl, UserRoute)
 app.use(baseUrl, CompanyRoute)
 app.use(baseUrl, OperationRoute)
 app.use(baseUrl, DocaRoute)

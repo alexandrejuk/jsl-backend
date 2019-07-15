@@ -28,6 +28,7 @@ veiculos
   "plate": "PLK1234"
 }
 
+// ticket
 {
   "vehicle": {
     "model": "FORD",
@@ -44,3 +45,21 @@ veiculos
   "service": "loading",
   "operationId": ""
 }
+
+http://localhost:3000/api/v1/
+
+http://localhost:3000/api/v1/companies
+
+http://localhost:3000/api/v1/companies/7af13a6d-f718-4746-9f93-cbdb5c58f472/docas
+http://localhost:3000/api/v1/companies/7af13a6d-f718-4746-9f93-cbdb5c58f472/operations
+http://localhost:3000/api/v1/companies/7af13a6d-f718-4746-9f93-cbdb5c58f472/tickets
+
+
+http://localhost:3000/api/v1/drivers
+http://localhost:3000/api/v1/vehicles
+
+
+postman
+empresa
+operação 
+doca
