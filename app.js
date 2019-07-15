@@ -39,6 +39,4 @@ app.use(baseUrl, DriverRoute)
 app.use(baseUrl, VehicleRoute)
 app.use(baseUrl, TicketRoute)
 
-
-
 module.exports = app 

@@ -2,8 +2,12 @@ const AuthDomain = require('../../domains/auth')
 const authDomain = new AuthDomain()
 
 const login = async (req, res, next) => {
-  const findUser = await authDomain.login(req.body)
-  res.json(findUser) 
+  try {
+    const findUser = await authDomain.login(req.body)
+    res.json(findUser) 
+  } catch (error) {
+    next(error)
+  }
 }
 
 module.exports = {
