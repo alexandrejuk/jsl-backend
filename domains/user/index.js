@@ -1,4 +1,4 @@
-const { hash } = require('bcrypt')
+const { hash, compare } = require('bcrypt')
 const database = require('../../database')
 
 const UserModel = database.model('user')
@@ -16,6 +16,23 @@ class UserDomain {
 
   async get(companyId) {
     return await UserModel.findAll({ where: { companyId } })
+  }
+
+  async update(id, userData, companyId) {
+    const { email, userName, password = null } = userData
+    const where = { companyId }
+
+    const findUser = await UserModel.findByPk(id, { where })
+    await findUser({ email, userName })
+    await findUser.reload()
+
+    if(password) {
+      const pwd = await hash(password, 10)
+      await findUser.update({ password: pwd })
+      await findUser.reload()
+    }
+
+    return findUser
   }
 }
 

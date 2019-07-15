@@ -31,8 +31,20 @@ const getById = async (req, res, next) => {
   }
 }
 
+const update = async (req, res, next) => {
+  const { id, companyId } = req.params
+  try {
+    const response = await userDomain.update(id, req.body, companyId)
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+}
+
+
 module.exports = {
   create,
   get,
   getById,
+  update,
 }
