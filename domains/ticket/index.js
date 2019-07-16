@@ -17,10 +17,19 @@ const include = [
 class TicketDomain {
   async create(ticketData, companyId, transaction = null) {
     const startedAt = new Date()
-    const { driver, vehicle, operationId, service, status, barCode } = ticketData
+    const { driver, vehicle, operationId, service, status } = ticketData
     let driverInstance = await DriverModel.findOne({ where: { documentId: driver.documentId } })
     let vehicleInstance = await VehicleModel.findOne({ where: { plate: vehicle.plate } })
     
+    const barCode = [
+      startedAt.getDate(),
+      (startedAt.getMonth() + 1),
+      startedAt.getFullYear(),
+      startedAt.getHours(),
+      startedAt.getMinutes(),
+      startedAt.getSeconds()
+    ].join('')
+
     if(!driverInstance) {
       driverInstance = await DriverModel.create(driver, { transaction })
     }
