@@ -15,6 +15,7 @@ const { httpLogger } = escriba({
 
 const middlewareValidation = require('./controllers/auth/middleware')
 
+const registerRoute = require('./routes/register')
 const authRoute = require('./routes/auth')
 const CompanyRoute = require('./routes/company')
 const OperationRoute = require('./routes/operation')
@@ -33,6 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(httpLogger)
 
 app.use('/', authRoute)
+app.use('/', registerRoute)
 
 app.use(baseUrl, middlewareValidation)
 app.use(baseUrl, UserRoute)
