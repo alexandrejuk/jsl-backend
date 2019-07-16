@@ -1,23 +1,28 @@
+const DB_USERNAME = process.env.DB_USERNAME
+const DB_HOST = process.env.DB_HOST
+const DB_NAME = process.env.DB_NAME
+const DB_PWD = process.env.DB_PWD
+
 module.exports = {
   development: {
-    username: 'ealoudfnecdwzl',
-    password: '4f60b043c0c6317796a985777a2b9e53f2b782c8f552b05c5d33197084bf6c7d',
-    database: 'd4tsdfqidoglim',
-    host: 'ec2-54-204-35-248.compute-1.amazonaws.com',
+    username: DB_NAME,
+    password: DB_PWD,
+    database: DB_USERNAME,
+    host: DB_HOST,
     dialect: 'postgres'
   },
   test: {
-    username: 'ealoudfnecdwzl',
-    password: '4f60b043c0c6317796a985777a2b9e53f2b782c8f552b05c5d33197084bf6c7d',
-    database: 'd4tsdfqidoglim',
-    host: 'ec2-54-204-35-248.compute-1.amazonaws.com',
+    username: DB_NAME,
+    password: DB_PWD,
+    database: DB_USERNAME,
+    host: DB_HOST,
     dialect: 'postgres'
   },
   production: {
-    username: 'ealoudfnecdwzl',
-    password: '4f60b043c0c6317796a985777a2b9e53f2b782c8f552b05c5d33197084bf6c7d',
-    database: 'd4tsdfqidoglim',
-    host: 'ec2-54-204-35-248.compute-1.amazonaws.com',
+    username: DB_NAME,
+    password: DB_PWD,
+    database: DB_USERNAME,
+    host: DB_HOST,
     dialect: 'postgres'
   }
 }
