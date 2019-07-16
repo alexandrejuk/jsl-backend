@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon bin/www",
+    "start": "node bin/www",
     "migrate": "sequelize db:migrate"
   },
   "dependencies": {
