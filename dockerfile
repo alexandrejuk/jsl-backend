@@ -5,4 +5,5 @@ COPY package.json /server/package.json
 WORKDIR /server
 COPY . .
 EXPOSE $PORT
+RUN yarn migrate
 CMD [ "yarn", "start" ]
