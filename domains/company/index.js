@@ -1,6 +1,8 @@
 const database = require('../../database')
 const CompanyModel = database.model('company')
-const UserModel = database.model('user')
+const UserDomain = require('../user')
+
+const userDomain = new UserDomain()
 
 class CompanyDomain {
   async create(companyData) {
@@ -10,7 +12,7 @@ class CompanyDomain {
   async register(companyData, transaction = null) {
     const { company, user } = companyData
     const companyCreated = await CompanyModel.create(company, { transaction })
-    await UserModel.create({ ...user, companyId: companyCreated.id }, { transaction })
+    await userDomain.create(user, companyCreated.id, transaction)
     return companyCreated
   }
 

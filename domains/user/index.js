@@ -4,9 +4,9 @@ const database = require('../../database')
 const UserModel = database.model('user')
 
 class UserDomain {
-  async create(userData, companyId) {
+  async create(userData, companyId, transaction = null) {
     const password = await hash(userData.password, 10)
-    return await UserModel.create({ ...userData, companyId, password })
+    return await UserModel.create({ ...userData, companyId, password }, { transaction })
   }
 
   async getById(id, companyId) {

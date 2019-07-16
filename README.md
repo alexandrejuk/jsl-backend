@@ -24,7 +24,7 @@ Controle, rapidez e qualidade para o gerenciamento de suas operações da jsl.
 - /api/v1/companies/:companyId/operations
 - /api/v1/companies/:companyId/tickets
 
-Para todos os endpoints abaixo você deve passar a **companyId** :
+Para todos os endpoints abaixo você deve passar a **companyId** e o **token** do usuário headers Authorization :
 - /api/v1/companies/:companyId
 - /api/v1/companies/:companyId/users
 - /api/v1/companies/:companyId/docas
@@ -88,6 +88,23 @@ password                | true      | senha do usuário
 }
 ```
 
+Exemplo da resposta do **endpoint** acima:
+
+```json
+{
+    "user": {
+        "id": "bc2c8802-14de-4837-a91b-ec2ffcfa675f",
+        "name": "Alexandre dos Santos Soares",
+        "userName": "alexandre",
+        "email": "ale_santos.soares@hotmail.com.br",
+        "password": "$2b$10$Dg./CTULhlao75fXsovKS.RDN2sK0EVxZGRWv7nH0jaNvqFvUR3.e",
+        "createdAt": "2019-07-16T22:48:00.729Z",
+        "updatedAt": "2019-07-16T22:48:00.729Z",
+        "companyId": "da8bb95f-baf2-4e64-a5be-bd2086cc473a"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYmMyYzg4MDItMTRkZS00ODM3LWE5MWItZWMyZmZjZmE2NzVmIiwibmFtZSI6IkFsZXhhbmRyZSBkb3MgU2FudG9zIFNvYXJlcyIsInVzZXJOYW1lIjoiYWxleGFuZHJlIiwiZW1haWwiOiJhbGVfc2FudG9zLnNvYXJlc0Bob3RtYWlsLmNvbS5iciIsInBhc3N3b3JkIjoiJDJiJDEwJERnLi9DVFVMaGxhbzc1Zlhzb3ZLUy5SRE4yc0swRVZ4WkdSV3Y3bkgwamFOdnFGdlVSMy5lIiwiY3JlYXRlZEF0IjoiMjAxOS0wNy0xNlQyMjo0ODowMC43MjlaIiwidXBkYXRlZEF0IjoiMjAxOS0wNy0xNlQyMjo0ODowMC43MjlaIiwiY29tcGFueUlkIjoiZGE4YmI5NWYtYmFmMi00ZTY0LWE1YmUtYmQyMDg2Y2M0NzNhIn0sImlhdCI6MTU2MzMxNzI5NywiZXhwIjoxNTYzNDAzNjk3fQ.9sdEmD8AgRzK2tHL3fp1YPMLEz9pjYyk8I9rbn6TTno"
+}
+```
 ## EndPoint /api/v1/companies/companyId/operations
 
 ## Método POST 
