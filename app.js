@@ -13,6 +13,8 @@ const { httpLogger } = escriba({
   service: 'api',
 })
 
+const middlewareValidation = require('./controllers/auth/middleware')
+
 const authRoute = require('./routes/auth')
 const CompanyRoute = require('./routes/company')
 const OperationRoute = require('./routes/operation')
@@ -30,7 +32,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(httpLogger)
 
-app.use(baseUrl, authRoute);
+app.use('/', authRoute)
+
+app.use(baseUrl, middlewareValidation)
 app.use(baseUrl, UserRoute)
 app.use(baseUrl, CompanyRoute)
 app.use(baseUrl, OperationRoute)

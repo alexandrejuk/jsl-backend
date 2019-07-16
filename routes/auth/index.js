@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const authController = require('../../controllers/auth')
+const middlewareAuthorization = require('../../controllers/auth')
 
-router.post('/login', authController.login)
+router.post('/login', middlewareAuthorization)
 
 module.exports = router
