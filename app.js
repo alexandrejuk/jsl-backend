@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const log4js = require('log4js')
 const escriba = require('escriba')
+const Port = process.env.PORT || 3000
 
 const logger = log4js.getLogger()
 
@@ -44,5 +45,8 @@ app.use(baseUrl, DocaRoute)
 app.use(baseUrl, DriverRoute)
 app.use(baseUrl, VehicleRoute)
 app.use(baseUrl, TicketRoute)
+
+
+app.listen(Port, () => console.log('running...'))
 
 module.exports = app 
