@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon bin/www"
+    "start": "nodemon bin/www",
+    "migrate": "sequelize db:migrate"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -16,7 +17,8 @@
     "log4js": "^4.5.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.10.0"
+    "sequelize": "^5.10.0",
+    "sequelize-cli": "^5.5.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

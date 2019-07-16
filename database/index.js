@@ -1,11 +1,16 @@
 const Sequelize = require('sequelize')
 const Models = require('./models')
 
+const DB_USER = process.env.DB_USER
+const DB_PWD = process.env.DB_PWD
+const DB_NAME = process.env.DB_PWD
+const DB_HOST = process.env.DB_HOST
+
 const sequelize = new Sequelize({
-  username:'postgres',
-  password: 'postgres',
-  database: 'postgres',
-  host: 'localhost',
+  username: DB_USER || 'postgres',
+  password: DB_PWD || 'postgres',
+  database: DB_NAME || 'postgres',
+  host: DB_HOST || 'localhost',
   dialect: 'postgres',
   logging: false,
   pool: {
