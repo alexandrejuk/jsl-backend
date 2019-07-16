@@ -25,7 +25,7 @@ Controle, rapidez e qualidade para o gerenciamento de suas operações da jsl.
 - /api/v1/companies/:companyId/tickets
 
 Para todos os endpoints abaixo você deve passar a **companyId** :
-- /api/v1/companies
+- /api/v1/companies/:companyId
 - /api/v1/companies/:companyId/users
 - /api/v1/companies/:companyId/docas
 - /api/v1/companies/:companyId/operations
