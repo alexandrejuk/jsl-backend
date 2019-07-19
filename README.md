@@ -122,7 +122,7 @@ description             | true      | nome da operação
 
 ```json
 {
-  "description": "Hyundai do Brazil Ltda",
+  "description": "Hyundai do Brazil Ltda"
 }
 ```
 

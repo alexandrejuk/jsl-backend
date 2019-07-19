@@ -58,9 +58,20 @@ const update = async (req, res, next) => {
   }
 }
 
+const getByIdTicket = async (req, res, next) => {
+  const { id } = req.params
+  try {
+    const response = await ticketDomain.getByIdTicket(id)
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   create,
   get,
   getById,
   update,
+  getByIdTicket,
 }

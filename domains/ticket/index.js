@@ -1,5 +1,5 @@
 const database = require('../../database')
-
+const Op = require('sequelize').Op
 const DriverModel = database.model('driver')
 const VehicleModel = database.model('vehicle')
 const OperationModel = database.model('operation')
@@ -136,12 +136,20 @@ class TicketDomain {
           await findDoca.update({ status: statusDoca[status] })
         }
       }
-      
-
-
     }
 
     return findTicket
+  }
+
+  async getByIdTicket(id) {
+    return await TicketModel.findByPk(id, { 
+        where: { 
+          status: {
+            [Op.or]: ['waiting_service', 'start_service', 'ended_service']
+          },
+        }, 
+        include 
+      })
   }
 }
 

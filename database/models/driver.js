@@ -23,6 +23,14 @@ const Driver = (sequelize) => {
     }
   })
 
+  Driver.associate = (models) => {
+    models.driver.hasMany(models.ticket, {
+      foreignKey: {
+        allowNull: false,
+      }
+    })
+  }
+
   return Driver
 }
 

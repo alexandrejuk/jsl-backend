@@ -15,8 +15,8 @@ const { httpLogger } = escriba({
 
 const middlewareValidation = require('./controllers/auth/middleware')
 
-const registerRoute = require('./routes/register')
-const authRoute = require('./routes/auth')
+const RegisterRoute = require('./routes/register')
+const AuthRoute = require('./routes/auth')
 const CompanyRoute = require('./routes/company')
 const OperationRoute = require('./routes/operation')
 const DocaRoute = require('./routes/doca')
@@ -24,6 +24,7 @@ const DriverRoute = require('./routes/driver')
 const VehicleRoute = require('./routes/vehicle')
 const TicketRoute = require('./routes/ticket')
 const UserRoute = require('./routes/user')
+const DriverTicketRoute = require('./routes/driverTicket')
 
 const app = Express()
 const baseUrl = '/api/v1'
@@ -33,8 +34,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(httpLogger)
 
-app.use('/', authRoute)
-app.use('/', registerRoute)
+app.use('/', AuthRoute)
+app.use('/', RegisterRoute)
+app.use('/', DriverTicketRoute)
 
 app.use(baseUrl, middlewareValidation)
 app.use(baseUrl, UserRoute)

@@ -28,8 +28,18 @@ const getById = async (req, res, next) => {
   }
 }
 
+const getTicketIdDriver = async (req, res, next) => {
+  try {
+    const response = await driverDomain.getTicketIdDriver(req.body.documentId)
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   create,
   get,
   getById,
+  getTicketIdDriver,
 }
