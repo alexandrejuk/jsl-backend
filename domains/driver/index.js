@@ -19,7 +19,7 @@ class DriverDomain {
 
   async getTicketIdDriver(documentId) {
     return await DriverModel.findOne({
-      documentId,
+      where: { documentId },
         include: [{
           model: TicketModel,
           where: {
