@@ -90,11 +90,10 @@ class TicketDomain {
       ended_service: 'available'
     }
     const startedAt = new Date()
-    const where = id ? { id, companyId } : { barCode, companyId }
-  
-    const findTicket = await TicketModel.findOne({ where })
+    const where = { barCode, companyId }
+    const findTicket = id ? await TicketModel.findByPk(id) : await TicketModel.findOne({ where })
     const findDoca = await DocaModel.findByPk(docaId)
-
+   
     if(!docaId && findTicket && findTicket.status === 'waiting_service') {
       await findTicket.update({ status: 'cancel' }, { transaction })
       await findTicket.reload({ transaction, include })
