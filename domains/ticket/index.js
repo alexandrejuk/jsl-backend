@@ -83,14 +83,14 @@ class TicketDomain {
     return statusType[value]
   }
 
-  async update({ docaId = null, barCode }, companyId, transaction = null) {
+  async update({ docaId = null, barCode = null, id = null }, companyId, transaction = null) {
     let status = null
     const statusDoca = {
       start_service: 'operation',
       ended_service: 'available'
     }
     const startedAt = new Date()
-    const where = { barCode, companyId }
+    const where = id ? { id, companyId } : { barCode, companyId }
   
     const findTicket = await TicketModel.findOne({ where })
     const findDoca = await DocaModel.findByPk(docaId)
